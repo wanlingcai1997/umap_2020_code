@@ -1,0 +1,75 @@
+===============================================================
+-------------------------------------------
+------------ Configurations ---------------
+-------------------------------------------
+file_input_data: ../../data/annotation_data.json
+num_previous_turns: 2
+content_features: 1
+discourse_features: 1
+sentiment_features: 0
+conversational_features: 1
+task_specific_features: 0
+feature_normalization: 0
+model_name: LR
+cross_validation: 10
+Step1: ReadConfiguration---- run time : 0.0s 
+===============================================================
+===============================================================
+[Timestamp: 2021-12-13 18:12:04.047610 ]Read Data
+[Timestamp: 2021-12-13 18:12:04.060609 ]-- Load Whole Annotation Data -- Number of Conversation: 336
+[Timestamp: 2021-12-13 18:12:04.069609 ]-- Load Whole Utterance Data  -- Number of Utterances: 4583
+[Timestamp: 2021-12-13 18:12:04.069609 ]Intent Labels (16): ['OTH', 'IQU', 'REJ', 'CRI-A', 'SEE', 'PRO', 'CRI-C', 'ACC', 'CRI-F', 'INQ', 'ANS', 'NRE', 'CON', 'ASK', 'REF', 'STO']
+[Timestamp: 2021-12-13 18:12:04.069609 ]Action Labels (10): ['REC-E', 'REC-S', 'RESP', 'EXP-I', 'OTH', 'R-ANS', 'REQ', 'EXP-P', 'EXP-S', 'CLQ']
+[Timestamp: 2021-12-13 18:12:04.076609 ]Number of Satisfactory Conversation: 253.
+[Timestamp: 2021-12-13 18:12:04.076609 ]Number of Unsatisfactory Conversation: 83.
+Step2: ReadData---- run time : 0.015625s 
+===============================================================
+===============================================================
+[Timestamp: 2021-12-13 18:12:28.219164 ]entity_label_set (17):['DATE', 'CARDINAL', 'GPE', 'PERSON', 'ORG', 'ORDINAL', 'LOC', 'WORK_OF_ART', 'NORP', 'TIME', 'LAW', 'PRODUCT', 'FAC', 'EVENT', 'PERCENT', 'LANGUAGE', 'QUANTITY']
+[Timestamp: 2021-12-13 18:12:49.778763 ]POS_tag_set (18):['INTJ', 'AUX', 'PRON', 'VERB', 'DET', 'NOUN', 'PART', 'PUNCT', 'ADV', 'ADP', 'PROPN', 'X', 'SPACE', 'NUM', 'CCONJ', 'ADJ', 'SCONJ', 'SYM']
+[Timestamp: 2021-12-13 18:26:36.927289 ]Extract Features For Each extracted Conversations (N utterances) and Construct Feature Vector
+[ 336 conversations with the size of features vector (11072) ]
+Step3: ConstructFeature---- run time : 867.28125s 
+===============================================================
+===============================================================
+<bound method BaseEstimator.get_params of LogisticRegression()>
+GridSearchCV(estimator=LogisticRegression(),
+             param_grid={'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
+                         'max_iter': [10, 100, 500, 1000],
+                         'penalty': ['l2', 'l1']},
+             scoring='f1')
+training time taken:  261.0 seconds
+best parameters : {'C': 1, 'max_iter': 100, 'penalty': 'l2'}
+best estimator : LogisticRegression(C=1)
+best F1 score:  0.6595520421607379
+accuracy_train : 0.9552238805970149
+accuracy_test : 0.8382352941176471
+[[49  7]
+ [ 4  8]]
+              precision    recall  f1-score   support
+
+           0       0.92      0.88      0.90        56
+           1       0.53      0.67      0.59        12
+
+    accuracy                           0.84        68
+   macro avg       0.73      0.77      0.75        68
+weighted avg       0.86      0.84      0.84        68
+
+LogisticRegression(C=1)
+{'fit_time': array([1.1479733 , 1.12197495, 1.08897614, 1.05297565, 1.28197241,
+       1.1309762 , 1.08098173, 1.35197067, 1.16097379, 1.05497599]), 'score_time': array([0.00399923, 0.00399971, 0.0039978 , 0.00500154, 0.00399947,
+       0.0039978 , 0.00699615, 0.00399923, 0.00400019, 0.00399971]), 'test_f1': array([0.76923077, 0.30769231, 0.70588235, 0.875     , 0.66666667,
+       0.8       , 0.61538462, 0.71428571, 0.5       , 0.71428571]), 'train_f1': array([0.90780142, 0.88235294, 0.88405797, 0.86567164, 0.85714286,
+       0.87407407, 0.89051095, 0.87591241, 0.90780142, 0.87591241]), 'test_accuracy': array([0.91176471, 0.73529412, 0.85294118, 0.94117647, 0.85294118,
+       0.91176471, 0.84848485, 0.87878788, 0.81818182, 0.87878788]), 'train_accuracy': array([0.95695364, 0.94701987, 0.94701987, 0.94039735, 0.93708609,
+       0.94370861, 0.95049505, 0.94389439, 0.95709571, 0.94389439]), 'test_precision': array([1.        , 0.4       , 0.66666667, 1.        , 0.83333333,
+       1.        , 0.8       , 0.83333333, 0.75      , 0.83333333]), 'train_precision': array([0.96969697, 0.98360656, 0.96825397, 0.96666667, 0.96610169,
+       0.96721311, 0.98387097, 0.96774194, 0.96969697, 0.96774194]), 'test_recall': array([0.625     , 0.25      , 0.75      , 0.77777778, 0.55555556,
+       0.66666667, 0.5       , 0.625     , 0.375     , 0.625     ]), 'train_recall': array([0.85333333, 0.8       , 0.81333333, 0.78378378, 0.77027027,
+       0.7972973 , 0.81333333, 0.8       , 0.85333333, 0.8       ])}
+f1 : 0.6668428140486965
+accuracy : 0.8630124777183601
+precision : 0.8116666666666668
+recall : 0.575
+Step4: Train model---- run time : 940.5s 
+===============================================================

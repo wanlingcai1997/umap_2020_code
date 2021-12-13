@@ -1,0 +1,248 @@
+===============================================================
+-------------------------------------------
+------------ Configurations ---------------
+-------------------------------------------
+file_input_data: ../../data/annotation_data.json
+content_features: 1
+structural_features: 1
+sentiment_features: 1
+conversational_features: 1
+feature_normalization: 0
+model_name: biLSTM
+max_sequence_length: 50
+max_num_vocabulary: 20000
+embedding_selection: glove
+embedding_dimension: 200
+lstm_units: 512
+dropout_rate: 0.4
+dense_units: 128
+cross_validation: 3
+Step1: ReadConfiguration---- run time : 0.0s 
+===============================================================
+===============================================================
+[Timestamp: 2021-12-13 17:25:06.720175 ]Read Data
+[Timestamp: 2021-12-13 17:25:06.733202 ]-- Load Whole Annotation Data -- Number of Conversation: 336
+[Timestamp: 2021-12-13 17:25:06.743199 ]-- Load Whole Utterance Data  -- Number of Utterances: 4583
+[Timestamp: 2021-12-13 17:25:06.743199 ]Number of All Utterances: 4583:
+[Timestamp: 2021-12-13 17:25:06.744197 ]Number of User Utterances: 2261:
+[Timestamp: 2021-12-13 17:25:06.744197 ]Intent Labels (16): ['OTH', 'IQU', 'REJ', 'CRI-A', 'SEE', 'PRO', 'CRI-C', 'ACC', 'CRI-F', 'INQ', 'ANS', 'NRE', 'CON', 'ASK', 'REF', 'STO']
+[Timestamp: 2021-12-13 17:25:06.744197 ]Action Labels (10): ['REC-E', 'REC-S', 'RESP', 'EXP-I', 'OTH', 'R-ANS', 'REQ', 'EXP-P', 'EXP-S', 'CLQ']
+[Timestamp: 2021-12-13 17:25:06.746198 ]Binarize the multi-label for label data
+<bound method BaseEstimator.get_params of MultiLabelBinarizer(classes=['OTH', 'IQU', 'REJ', 'CRI-A', 'SEE', 'PRO',
+                             'CRI-C', 'ACC', 'CRI-F', 'INQ', 'ANS', 'NRE',
+                             'CON', 'ASK', 'REF', 'STO'])>
+Step2: ReadData---- run time : 0.015625s 
+===============================================================
+===============================================================
+[Timestamp: 2021-12-13 17:25:07.990167 ]actual_max_seq_len: 38
+[Timestamp: 2021-12-13 17:25:07.990167 ]final_max_seq_len: 38
+[Timestamp: 2021-12-13 17:25:07.996142 ]after padding sequences, we obtained the text sequence. Shape: (2261, 38)
+[Timestamp: 2021-12-13 17:25:07.996142 ]Found 2513 unique tokens (actual_num_of_vocabulary).
+[Timestamp: 2021-12-13 17:25:07.996142 ]Constructing embedding matrix ...
+[Timestamp: 2021-12-13 17:25:07.996142 ]The dimension of embeeding: 200
+Loaded 400000 word vectors.
+[Timestamp: 2021-12-13 17:25:25.819758 ]The length of embedding matrix: 2514
+[[1506    9 1507 ...    0    0    0]
+ [   7    1 2302 ...    0    0    0]
+ [  11    6    0 ...    0    0    0]
+ ...
+ [   5    3    7 ...    0    0    0]
+ [   8 1841 1842 ...    0    0    0]
+ [  15    1  114 ...    0    0    0]]
+Step3: Initialization---- run time : 19.0625s 
+===============================================================
+===============================================================
+(1808, 38)
+Epoch 1/100
+
+ 1/15 [=>............................] - ETA: 40s - loss: 0.7044 - binary_accuracy: 0.4512
+ 2/15 [===>..........................] - ETA: 10s - loss: 0.6616 - binary_accuracy: 0.6306
+ 3/15 [=====>........................] - ETA: 10s - loss: 0.6204 - binary_accuracy: 0.7126
+ 4/15 [=======>......................] - ETA: 8s - loss: 0.5734 - binary_accuracy: 0.7604 
+ 5/15 [=========>....................] - ETA: 8s - loss: 0.5266 - binary_accuracy: 0.7889
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.4940 - binary_accuracy: 0.8044
+ 7/15 [=============>................] - ETA: 6s - loss: 0.4655 - binary_accuracy: 0.8190
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.4475 - binary_accuracy: 0.8283
+ 9/15 [=================>............] - ETA: 4s - loss: 0.4301 - binary_accuracy: 0.8372
+10/15 [===================>..........] - ETA: 4s - loss: 0.4160 - binary_accuracy: 0.8441
+11/15 [=====================>........] - ETA: 3s - loss: 0.4023 - binary_accuracy: 0.8502
+12/15 [=======================>......] - ETA: 2s - loss: 0.3913 - binary_accuracy: 0.8553
+13/15 [=========================>....] - ETA: 1s - loss: 0.3820 - binary_accuracy: 0.8596
+14/15 [===========================>..] - ETA: 0s - loss: 0.3735 - binary_accuracy: 0.8635
+15/15 [==============================] - ETA: 0s - loss: 0.3724 - binary_accuracy: 0.8640
+15/15 [==============================] - 15s 856ms/step - loss: 0.3724 - binary_accuracy: 0.8640 - val_loss: 0.2524 - val_binary_accuracy: 0.9148
+Epoch 2/100
+
+ 1/15 [=>............................] - ETA: 10s - loss: 0.2582 - binary_accuracy: 0.9111
+ 2/15 [===>..........................] - ETA: 10s - loss: 0.2524 - binary_accuracy: 0.9143
+ 3/15 [=====>........................] - ETA: 9s - loss: 0.2501 - binary_accuracy: 0.9167 
+ 4/15 [=======>......................] - ETA: 8s - loss: 0.2458 - binary_accuracy: 0.9174
+ 5/15 [=========>....................] - ETA: 7s - loss: 0.2438 - binary_accuracy: 0.9187
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.2444 - binary_accuracy: 0.9182
+ 7/15 [=============>................] - ETA: 6s - loss: 0.2454 - binary_accuracy: 0.9182
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.2430 - binary_accuracy: 0.9187
+ 9/15 [=================>............] - ETA: 4s - loss: 0.2429 - binary_accuracy: 0.9189
+10/15 [===================>..........] - ETA: 4s - loss: 0.2423 - binary_accuracy: 0.9187
+11/15 [=====================>........] - ETA: 3s - loss: 0.2425 - binary_accuracy: 0.9189
+12/15 [=======================>......] - ETA: 2s - loss: 0.2423 - binary_accuracy: 0.9190
+13/15 [=========================>....] - ETA: 1s - loss: 0.2421 - binary_accuracy: 0.9188
+14/15 [===========================>..] - ETA: 0s - loss: 0.2401 - binary_accuracy: 0.9196
+15/15 [==============================] - ETA: 0s - loss: 0.2400 - binary_accuracy: 0.9197
+15/15 [==============================] - 12s 813ms/step - loss: 0.2400 - binary_accuracy: 0.9197 - val_loss: 0.2274 - val_binary_accuracy: 0.9226
+Epoch 3/100
+
+ 1/15 [=>............................] - ETA: 11s - loss: 0.2132 - binary_accuracy: 0.9292
+ 2/15 [===>..........................] - ETA: 10s - loss: 0.2289 - binary_accuracy: 0.9250
+ 3/15 [=====>........................] - ETA: 9s - loss: 0.2255 - binary_accuracy: 0.9246 
+ 4/15 [=======>......................] - ETA: 8s - loss: 0.2242 - binary_accuracy: 0.9250
+ 5/15 [=========>....................] - ETA: 7s - loss: 0.2293 - binary_accuracy: 0.9230
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.2309 - binary_accuracy: 0.9220
+ 7/15 [=============>................] - ETA: 6s - loss: 0.2284 - binary_accuracy: 0.9232
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.2279 - binary_accuracy: 0.9229
+ 9/15 [=================>............] - ETA: 4s - loss: 0.2277 - binary_accuracy: 0.9234
+10/15 [===================>..........] - ETA: 3s - loss: 0.2260 - binary_accuracy: 0.9242
+11/15 [=====================>........] - ETA: 3s - loss: 0.2240 - binary_accuracy: 0.9245
+12/15 [=======================>......] - ETA: 2s - loss: 0.2218 - binary_accuracy: 0.9252
+13/15 [=========================>....] - ETA: 1s - loss: 0.2213 - binary_accuracy: 0.9253
+14/15 [===========================>..] - ETA: 0s - loss: 0.2189 - binary_accuracy: 0.9263
+15/15 [==============================] - ETA: 0s - loss: 0.2184 - binary_accuracy: 0.9264
+15/15 [==============================] - 12s 788ms/step - loss: 0.2184 - binary_accuracy: 0.9264 - val_loss: 0.2210 - val_binary_accuracy: 0.9253
+Epoch 4/100
+
+ 1/15 [=>............................] - ETA: 10s - loss: 0.2120 - binary_accuracy: 0.9292
+ 2/15 [===>..........................] - ETA: 9s - loss: 0.2094 - binary_accuracy: 0.9297 
+ 3/15 [=====>........................] - ETA: 9s - loss: 0.2093 - binary_accuracy: 0.9287
+ 4/15 [=======>......................] - ETA: 8s - loss: 0.2091 - binary_accuracy: 0.9287
+ 5/15 [=========>....................] - ETA: 7s - loss: 0.2079 - binary_accuracy: 0.9292
+ 6/15 [===========>..................] - ETA: 6s - loss: 0.2103 - binary_accuracy: 0.9287
+ 7/15 [=============>................] - ETA: 6s - loss: 0.2078 - binary_accuracy: 0.9293
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.2084 - binary_accuracy: 0.9291
+ 9/15 [=================>............] - ETA: 4s - loss: 0.2068 - binary_accuracy: 0.9293
+10/15 [===================>..........] - ETA: 3s - loss: 0.2049 - binary_accuracy: 0.9299
+11/15 [=====================>........] - ETA: 3s - loss: 0.2043 - binary_accuracy: 0.9303
+12/15 [=======================>......] - ETA: 2s - loss: 0.2027 - binary_accuracy: 0.9309
+13/15 [=========================>....] - ETA: 1s - loss: 0.2032 - binary_accuracy: 0.9306
+14/15 [===========================>..] - ETA: 0s - loss: 0.2026 - binary_accuracy: 0.9306
+15/15 [==============================] - ETA: 0s - loss: 0.2025 - binary_accuracy: 0.9305
+15/15 [==============================] - 12s 800ms/step - loss: 0.2025 - binary_accuracy: 0.9305 - val_loss: 0.1966 - val_binary_accuracy: 0.9342
+Epoch 5/100
+
+ 1/15 [=>............................] - ETA: 11s - loss: 0.1784 - binary_accuracy: 0.9380
+ 2/15 [===>..........................] - ETA: 10s - loss: 0.1866 - binary_accuracy: 0.9358
+ 3/15 [=====>........................] - ETA: 9s - loss: 0.1821 - binary_accuracy: 0.9372 
+ 4/15 [=======>......................] - ETA: 8s - loss: 0.1883 - binary_accuracy: 0.9344
+ 5/15 [=========>....................] - ETA: 8s - loss: 0.1887 - binary_accuracy: 0.9345
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.1883 - binary_accuracy: 0.9343
+ 7/15 [=============>................] - ETA: 6s - loss: 0.1927 - binary_accuracy: 0.9331
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.1902 - binary_accuracy: 0.9341
+ 9/15 [=================>............] - ETA: 5s - loss: 0.1891 - binary_accuracy: 0.9342
+10/15 [===================>..........] - ETA: 4s - loss: 0.1880 - binary_accuracy: 0.9343
+11/15 [=====================>........] - ETA: 3s - loss: 0.1876 - binary_accuracy: 0.9341
+12/15 [=======================>......] - ETA: 2s - loss: 0.1864 - binary_accuracy: 0.9344
+13/15 [=========================>....] - ETA: 1s - loss: 0.1858 - binary_accuracy: 0.9346
+14/15 [===========================>..] - ETA: 0s - loss: 0.1861 - binary_accuracy: 0.9343
+15/15 [==============================] - ETA: 0s - loss: 0.1862 - binary_accuracy: 0.9343
+15/15 [==============================] - 13s 865ms/step - loss: 0.1862 - binary_accuracy: 0.9343 - val_loss: 0.1910 - val_binary_accuracy: 0.9331
+Epoch 6/100
+
+ 1/15 [=>............................] - ETA: 14s - loss: 0.1964 - binary_accuracy: 0.9297
+ 2/15 [===>..........................] - ETA: 12s - loss: 0.1833 - binary_accuracy: 0.9368
+ 3/15 [=====>........................] - ETA: 11s - loss: 0.1768 - binary_accuracy: 0.9373
+ 4/15 [=======>......................] - ETA: 10s - loss: 0.1762 - binary_accuracy: 0.9374
+ 5/15 [=========>....................] - ETA: 9s - loss: 0.1766 - binary_accuracy: 0.9375 
+ 6/15 [===========>..................] - ETA: 8s - loss: 0.1774 - binary_accuracy: 0.9364
+ 7/15 [=============>................] - ETA: 7s - loss: 0.1761 - binary_accuracy: 0.9369
+ 8/15 [===============>..............] - ETA: 6s - loss: 0.1751 - binary_accuracy: 0.9377
+ 9/15 [=================>............] - ETA: 5s - loss: 0.1756 - binary_accuracy: 0.9377
+10/15 [===================>..........] - ETA: 4s - loss: 0.1744 - binary_accuracy: 0.9382
+11/15 [=====================>........] - ETA: 3s - loss: 0.1746 - binary_accuracy: 0.9378
+12/15 [=======================>......] - ETA: 2s - loss: 0.1750 - binary_accuracy: 0.9375
+13/15 [=========================>....] - ETA: 1s - loss: 0.1752 - binary_accuracy: 0.9374
+14/15 [===========================>..] - ETA: 0s - loss: 0.1767 - binary_accuracy: 0.9370
+15/15 [==============================] - ETA: 0s - loss: 0.1768 - binary_accuracy: 0.9371
+15/15 [==============================] - 14s 946ms/step - loss: 0.1768 - binary_accuracy: 0.9371 - val_loss: 0.1922 - val_binary_accuracy: 0.9345
+Epoch 7/100
+
+ 1/15 [=>............................] - ETA: 12s - loss: 0.1846 - binary_accuracy: 0.9307
+ 2/15 [===>..........................] - ETA: 11s - loss: 0.1767 - binary_accuracy: 0.9319
+ 3/15 [=====>........................] - ETA: 10s - loss: 0.1741 - binary_accuracy: 0.9338
+ 4/15 [=======>......................] - ETA: 9s - loss: 0.1770 - binary_accuracy: 0.9336 
+ 5/15 [=========>....................] - ETA: 8s - loss: 0.1738 - binary_accuracy: 0.9347
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.1734 - binary_accuracy: 0.9345
+ 7/15 [=============>................] - ETA: 6s - loss: 0.1714 - binary_accuracy: 0.9362
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.1705 - binary_accuracy: 0.9366
+ 9/15 [=================>............] - ETA: 5s - loss: 0.1683 - binary_accuracy: 0.9379
+10/15 [===================>..........] - ETA: 4s - loss: 0.1684 - binary_accuracy: 0.9379
+11/15 [=====================>........] - ETA: 3s - loss: 0.1687 - binary_accuracy: 0.9381
+12/15 [=======================>......] - ETA: 2s - loss: 0.1680 - binary_accuracy: 0.9384
+13/15 [=========================>....] - ETA: 1s - loss: 0.1678 - binary_accuracy: 0.9388
+14/15 [===========================>..] - ETA: 0s - loss: 0.1678 - binary_accuracy: 0.9389
+15/15 [==============================] - ETA: 0s - loss: 0.1684 - binary_accuracy: 0.9388
+15/15 [==============================] - 12s 828ms/step - loss: 0.1684 - binary_accuracy: 0.9388 - val_loss: 0.1896 - val_binary_accuracy: 0.9336
+Epoch 8/100
+
+ 1/15 [=>............................] - ETA: 12s - loss: 0.1588 - binary_accuracy: 0.9458
+ 2/15 [===>..........................] - ETA: 11s - loss: 0.1589 - binary_accuracy: 0.9448
+ 3/15 [=====>........................] - ETA: 10s - loss: 0.1607 - binary_accuracy: 0.9443
+ 4/15 [=======>......................] - ETA: 9s - loss: 0.1575 - binary_accuracy: 0.9425 
+ 5/15 [=========>....................] - ETA: 8s - loss: 0.1632 - binary_accuracy: 0.9404
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.1610 - binary_accuracy: 0.9414
+ 7/15 [=============>................] - ETA: 6s - loss: 0.1609 - binary_accuracy: 0.9415
+ 8/15 [===============>..............] - ETA: 6s - loss: 0.1607 - binary_accuracy: 0.9415
+ 9/15 [=================>............] - ETA: 5s - loss: 0.1646 - binary_accuracy: 0.9408
+10/15 [===================>..........] - ETA: 4s - loss: 0.1659 - binary_accuracy: 0.9406
+11/15 [=====================>........] - ETA: 3s - loss: 0.1658 - binary_accuracy: 0.9410
+12/15 [=======================>......] - ETA: 2s - loss: 0.1653 - binary_accuracy: 0.9410
+13/15 [=========================>....] - ETA: 1s - loss: 0.1643 - binary_accuracy: 0.9410
+14/15 [===========================>..] - ETA: 0s - loss: 0.1637 - binary_accuracy: 0.9411
+15/15 [==============================] - ETA: 0s - loss: 0.1637 - binary_accuracy: 0.9412
+15/15 [==============================] - 13s 867ms/step - loss: 0.1637 - binary_accuracy: 0.9412 - val_loss: 0.1886 - val_binary_accuracy: 0.9339
+Epoch 9/100
+
+ 1/15 [=>............................] - ETA: 11s - loss: 0.1482 - binary_accuracy: 0.9478
+ 2/15 [===>..........................] - ETA: 10s - loss: 0.1570 - binary_accuracy: 0.9460
+ 3/15 [=====>........................] - ETA: 9s - loss: 0.1534 - binary_accuracy: 0.9458 
+ 4/15 [=======>......................] - ETA: 8s - loss: 0.1530 - binary_accuracy: 0.9464
+ 5/15 [=========>....................] - ETA: 7s - loss: 0.1560 - binary_accuracy: 0.9446
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.1560 - binary_accuracy: 0.9444
+ 7/15 [=============>................] - ETA: 6s - loss: 0.1565 - binary_accuracy: 0.9445
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.1581 - binary_accuracy: 0.9432
+ 9/15 [=================>............] - ETA: 4s - loss: 0.1569 - binary_accuracy: 0.9440
+10/15 [===================>..........] - ETA: 4s - loss: 0.1551 - binary_accuracy: 0.9444
+11/15 [=====================>........] - ETA: 3s - loss: 0.1554 - binary_accuracy: 0.9442
+12/15 [=======================>......] - ETA: 2s - loss: 0.1545 - binary_accuracy: 0.9443
+13/15 [=========================>....] - ETA: 1s - loss: 0.1550 - binary_accuracy: 0.9443
+14/15 [===========================>..] - ETA: 0s - loss: 0.1543 - binary_accuracy: 0.9443
+15/15 [==============================] - ETA: 0s - loss: 0.1543 - binary_accuracy: 0.9443
+15/15 [==============================] - 12s 831ms/step - loss: 0.1543 - binary_accuracy: 0.9443 - val_loss: 0.1895 - val_binary_accuracy: 0.9375
+Epoch 10/100
+
+ 1/15 [=>............................] - ETA: 11s - loss: 0.1392 - binary_accuracy: 0.9482
+ 2/15 [===>..........................] - ETA: 10s - loss: 0.1406 - binary_accuracy: 0.9458
+ 3/15 [=====>........................] - ETA: 9s - loss: 0.1335 - binary_accuracy: 0.9497 
+ 4/15 [=======>......................] - ETA: 9s - loss: 0.1414 - binary_accuracy: 0.9474
+ 5/15 [=========>....................] - ETA: 8s - loss: 0.1444 - binary_accuracy: 0.9465
+ 6/15 [===========>..................] - ETA: 7s - loss: 0.1438 - binary_accuracy: 0.9472
+ 7/15 [=============>................] - ETA: 6s - loss: 0.1449 - binary_accuracy: 0.9470
+ 8/15 [===============>..............] - ETA: 5s - loss: 0.1446 - binary_accuracy: 0.9467
+ 9/15 [=================>............] - ETA: 4s - loss: 0.1466 - binary_accuracy: 0.9459
+10/15 [===================>..........] - ETA: 4s - loss: 0.1497 - binary_accuracy: 0.9446
+11/15 [=====================>........] - ETA: 3s - loss: 0.1488 - binary_accuracy: 0.9454
+12/15 [=======================>......] - ETA: 2s - loss: 0.1487 - binary_accuracy: 0.9455
+13/15 [=========================>....] - ETA: 1s - loss: 0.1503 - binary_accuracy: 0.9447
+14/15 [===========================>..] - ETA: 0s - loss: 0.1505 - binary_accuracy: 0.9449
+15/15 [==============================] - ETA: 0s - loss: 0.1507 - binary_accuracy: 0.9449
+15/15 [==============================] - 13s 877ms/step - loss: 0.1507 - binary_accuracy: 0.9449 - val_loss: 0.1897 - val_binary_accuracy: 0.9353
+Step4: Train model---- run time : 1103.640625s 
+===============================================================
+===============================================================
+0.5
+f1_micro : 0.6012
+hamming_loss : 0.0705
+hamming_score : 0.5722
+accuracy : 0.4758
+precision : 0.6391
+recall : 0.5676
+zero_one_loss : 0.5242
+Step 5 Evaluation---- run time : 14.078125s 
+===============================================================

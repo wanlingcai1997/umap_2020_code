@@ -1,0 +1,4 @@
+# Of note, here one previous turn refers to the previous one utterance either from the recommender.or the seeker. In our paper, One dialogue turn denotes a consecutive
+utterance-response pair (2 previous turns): Utterance is from seeker and response is from recommender.
+
+python Main.py --file_input_data ../../data/annotation_data.json --num_previous_turns 2 --feature_normalization 0 --cross_validation 10 --content_features 1 --discourse_features 1 --sentiment_features 0 --conversational_features 1 --task_specific_features 0 --model_name LR > result.txt
